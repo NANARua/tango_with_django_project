@@ -8,4 +8,5 @@ urlpatterns = [
     # first parameter is the string to match. empty string '', only match if there is nothing after
     # second parameter tells Django what view to call if matched
     # third and optional parameter is called name
+    path('about/', views.about, name='about')
 ]
