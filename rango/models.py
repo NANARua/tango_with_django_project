@@ -1,12 +1,13 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.template.defaultfilters import slugify
 
 # Create your models here.
 class Category(models.Model):
-
+    NAME_MAX_LENGTH = 128
     # CharField, a field for storing character data (e.g. strings). 
     # Specify max_length to provide a maximum number of characters that a CharField field can store.
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
 
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
@@ -30,10 +31,11 @@ class Category(models.Model):
 
 
 class Page(models.Model):
+    TITLE_MAX_LENGTH = 128
     category = models.ForeignKey(Category, on_delete=models.CASCADE) 
     # CASCADE instructs Django to delete the pages associated with the category when the category is deleted.
 
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=TITLE_MAX_LENGTH)
 
     # URLField, much like a CharField, but designed for storing resource URLs. 
     # You may also specify a max_length parameter.
